@@ -24,7 +24,7 @@ class DeckView extends React.Component {
         <ActionButton
           color={red}
           styles={styles}
-          text={'Add Card'}
+          text={'Quiz'}
           onPress={() => this.props.navigation.navigate('Quiz', { deck })}
         />
       </View>

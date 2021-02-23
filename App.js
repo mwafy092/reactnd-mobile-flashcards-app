@@ -14,7 +14,7 @@ import { createStore } from 'redux';
 import AddCard from './components/AddCard';
 import { back } from 'react-native/Libraries/Animated/src/Easing';
 import { purple } from './utils/colors';
-
+import Quiz from './components/Quiz';
 const store = createStore(reducer);
 const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
@@ -45,6 +45,11 @@ const DeckListScreen = () => (
       name='AddCard'
       component={AddCard}
       options={{ title: 'Add Card' }}
+    />
+    <DeckListStack.Screen
+      name='Quiz'
+      component={Quiz}
+      options={{ title: 'Quiz' }}
     />
   </DeckListStack.Navigator>
 );
