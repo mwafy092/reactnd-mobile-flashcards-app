@@ -16,3 +16,7 @@ For the UdaciCards project, you will build a mobile application (Android or iOS 
 2. use npm install
 3. use npm start
 4. choose your preferred way to view the project
+
+# Testing
+
+I tested this app on my own physical (IPhone 6s) device and it worked so perfect
