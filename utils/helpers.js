@@ -1,15 +1,14 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Permissions from 'expo-permissions';
-import * as Notifications from 'expo-notifications';
+import { Notifications, Permissions } from 'expo';
 
-const NOTIFICATIONS_KEY = 'flashcards: notifications';
+const NOTIFICATION_KEY = 'flashcards: notifications';
 
 function createNotification() {
   return {
-    title: 'Please Study',
-    body: 'do not forget to study today',
+    title: 'Log your stats!',
+    body: "👋 don't forget to log your stats for today!",
     ios: {
       sound: true,
     },
@@ -17,22 +16,25 @@ function createNotification() {
 }
 
 export function setLocalNotification() {
-  AsyncStorage.getItem(NOTIFICATIONS_KEY)
+  AsyncStorage.getItem(NOTIFICATION_KEY)
     .then(JSON.parse)
     .then((data) => {
       if (data === null) {
         Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
           if (status === 'granted') {
             Notifications.cancelAllScheduledNotificationsAsync();
+
             let tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
             tomorrow.setHours(20);
             tomorrow.setMinutes(0);
+
             Notifications.scheduleLocalNotificationAsync(createNotification(), {
               time: tomorrow,
               repeat: 'day',
             });
-            AsyncStorage.setItem(NOTIFICATIONS_KEY, JSON.stringify(true));
+
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
           }
         });
       }
@@ -40,7 +42,7 @@ export function setLocalNotification() {
 }
 
 export function clearLocalNotification() {
-  return AsyncStorage.removeItem(NOTIFICATIONS_KEY).then(
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
     Notifications.cancelAllScheduledNotificationsAsync
   );
 }
