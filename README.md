@@ -1,5 +1,9 @@
 # Mobile flashcards app
 
+# About the App
+
+For the UdaciCards project, you will build a mobile application (Android or iOS - or both) that allows users to study collections of flashcards. The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+
 # Tools used in the project
 
 1. react native
