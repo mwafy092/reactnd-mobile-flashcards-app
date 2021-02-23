@@ -7,9 +7,16 @@ import { add } from 'react-native-reanimated';
 export default class AddDeck extends React.Component {
   render() {
     return (
-      <View>
+      <View style={styles.container}>
         <Text>Add Deck Component</Text>
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});

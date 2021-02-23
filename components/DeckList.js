@@ -7,7 +7,7 @@ export default class DeckList extends React.Component {
     const decks = getData();
 
     return (
-      <View>
+      <View style={styles.container}>
         {Object.keys(decks).map((deck) => {
           const { title, questions } = decks[deck];
 
