@@ -32,7 +32,7 @@ class Quiz extends React.Component {
       questionNumber
     ].correctAnswer.toLowerCase();
 
-    if (answer.trim() === correct.trim()) {
+    if (answer === correct) {
       this.setState({ correct: this.state.correct + 1 });
     } else {
       this.setState({ incorrect: this.state.incorrect + 1 });
@@ -41,19 +41,6 @@ class Quiz extends React.Component {
       questionNumber: this.state.questionNumber + 1,
       showQuestion: false,
     });
-  };
-
-  replayQuiz = () => {
-    this.setState({
-      questionNumber: 0,
-      showQuestion: false,
-      correct: 0,
-      incorrect: 0,
-    });
-  };
-
-  goBack = () => {
-    this.props.navigation.navigate('DeckView');
   };
   render() {
     const questionNumber = this.state.questionNumber;
@@ -66,7 +53,7 @@ class Quiz extends React.Component {
       return (
         <View style={styles.container}>
           <View style={styles.card}>
-            <Text styles={styles.mainText}>
+            <Text styles>
               You got {this.state.correct} out of {decks[deck].questions.length}
               !
             </Text>
@@ -75,18 +62,8 @@ class Quiz extends React.Component {
             ) : (
               <Text style={{ fontSize: 60 }}>😢</Text>
             )}
-            <ActionButton
-              styles={styles}
-              text={'Try again'}
-              color={red}
-              onPress={this.replayQuiz}
-            />
-            <ActionButton
-              styles={styles}
-              text={'Back'}
-              color={green}
-              onPress={this.goBack}
-            />
+            <ActionButton styles={styles} text={'Try again'} color={red} />
+            <ActionButton styles={styles} text={'Back'} color={green} />
           </View>
         </View>
       );
