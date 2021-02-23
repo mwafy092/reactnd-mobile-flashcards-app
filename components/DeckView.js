@@ -4,16 +4,20 @@ import { getData } from '../utils/api';
 import { connect } from 'react-redux';
 import ActionButton from './ActionButton';
 import { purple, white, red } from '../utils/colors';
+import { getCardsLength } from '../utils/helpers';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 class DeckView extends React.Component {
   render() {
     const deck = this.props.route.params.deck;
 
     const { decks } = this.props;
+
+    const cards = decks[deck].questions;
     return (
       <View style={styles.container}>
         <Text style={{ fontSize: 30 }}>{decks[deck].title}</Text>
-        <Text style={{ color: 'red', fontSize: 18, margin: 10 }}>
-          {decks[deck].questions.length}
+        <Text style={{ color: 'green', fontSize: 18, margin: 10 }}>
+          {cards ? getCardsLength(cards) : null}
         </Text>
         <ActionButton
           color={purple}

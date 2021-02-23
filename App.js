@@ -20,7 +20,7 @@ const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const DeckListStack = createStackNavigator();
 const AddDeckStack = createStackNavigator();
-
+import { setLocalNotification } from './utils/helpers';
 function NewStatusBar({ backgroundColor, ...props }) {
   return (
     <View style={{ backgroundColor: purple }}>
@@ -63,34 +63,43 @@ const AddDeckScreen = () => (
   </AddDeckStack.Navigator>
 );
 
-export default function App() {
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <NewStatusBar backgroundColor={purple} barStyle='light-content' />
-        <Tabs.Navigator>
-          <Tabs.Screen
-            name='DeckList'
-            component={DeckListScreen}
-            options={{
-              tabBarLabel: 'Deck List',
-              tabBarIcon: ({ color }) => (
-                <MaterialCommunityIcons name='cards' color={color} size={26} />
-              ),
-            }}
-          />
-          <Tabs.Screen
-            name='AddDeck'
-            component={AddDeckScreen}
-            options={{
-              tabBarLabel: 'Deck List',
-              tabBarIcon: ({ color }) => (
-                <FontAwesome name='plus-square' color={color} size={26} />
-              ),
-            }}
-          />
-        </Tabs.Navigator>
-      </NavigationContainer>
-    </Provider>
-  );
+export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
+  render() {
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <NewStatusBar backgroundColor={purple} barStyle='light-content' />
+          <Tabs.Navigator>
+            <Tabs.Screen
+              name='DeckList'
+              component={DeckListScreen}
+              options={{
+                tabBarLabel: 'Deck List',
+                tabBarIcon: ({ color }) => (
+                  <MaterialCommunityIcons
+                    name='cards'
+                    color={color}
+                    size={26}
+                  />
+                ),
+              }}
+            />
+            <Tabs.Screen
+              name='AddDeck'
+              component={AddDeckScreen}
+              options={{
+                tabBarLabel: 'Deck List',
+                tabBarIcon: ({ color }) => (
+                  <FontAwesome name='plus-square' color={color} size={26} />
+                ),
+              }}
+            />
+          </Tabs.Navigator>
+        </NavigationContainer>
+      </Provider>
+    );
+  }
 }

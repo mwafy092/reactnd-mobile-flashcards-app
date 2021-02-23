@@ -5,6 +5,7 @@ import { getDecks } from '../utils/api';
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 import { orange } from '../utils/colors';
+import { getCardsLength } from '../utils/helpers';
 class DeckList extends React.Component {
   componentDidMount() {
     getDecks().then((decks) => this.props.receiveAllDecks(decks));
@@ -21,7 +22,9 @@ class DeckList extends React.Component {
           return (
             <View key={title} style={styles.card}>
               <Text style={styles.text}>{title}</Text>
-              <Text style={styles.text}>{questions.length}</Text>
+              <Text style={styles.text}>
+                {questions ? getCardsLength(questions) : null}
+              </Text>
               <Button
                 style={styles.submitBtn}
                 title='show deck'
