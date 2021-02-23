@@ -3,37 +3,90 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createStackNavigator, StackView } from '@react-navigation/stack';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
-import { purple, white } from './utils/colors';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
+import DeckView from './components/DeckView';
+const Tabs = createBottomTabNavigator();
 
-const Tab = createBottomTabNavigator();
+// const Stack = createStackNavigator();
+const DeckListStack = createStackNavigator();
+const AddDeckStack = createStackNavigator();
+// const DeckViewStack = createStackNavigator();
+
+const DeckListScreen = () => (
+  <DeckListStack.Navigator>
+    <DeckListStack.Screen
+      name='DeckList'
+      component={DeckList}
+      options={{ title: 'Deck List' }}
+    />
+    <DeckListStack.Screen
+      name='DeckView'
+      component={DeckView}
+      options={{ title: 'Deck View' }}
+    />
+  </DeckListStack.Navigator>
+);
+const AddDeckScreen = () => (
+  <AddDeckStack.Navigator>
+    <AddDeckStack.Screen
+      name='AddDeck'
+      component={AddDeck}
+      options={{ title: 'Add Deck' }}
+    />
+  </AddDeckStack.Navigator>
+);
+
+const DeckViewScreen = () => (
+  <DeckViewStack.Navigator></DeckViewStack.Navigator>
+);
+
 export default function App() {
   return (
     <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen
+      <Tabs.Navigator>
+        <Tabs.Screen
           name='DeckList'
-          component={DeckList}
+          component={DeckListScreen}
           options={{
-            tabBarLabel: 'Decks',
+            tabBarLabel: 'Deck List',
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name='cards' size={30} color={color} />
+              <MaterialCommunityIcons name='cards' color={color} size={26} />
             ),
           }}
         />
-        <Tab.Screen
+        <Tabs.Screen
           name='AddDeck'
-          component={AddDeck}
+          component={AddDeckScreen}
           options={{
-            tabBarLabel: 'Add Deck',
+            tabBarLabel: 'Deck List',
             tabBarIcon: ({ color }) => (
-              <FontAwesome name='plus-square' size={30} color={color} />
+              <FontAwesome name='plus-square' color={color} size={26} />
             ),
           }}
         />
-      </Tab.Navigator>
+      </Tabs.Navigator>
     </NavigationContainer>
+    // <NavigationContainer>
+    //   <Stack.Navigator>
+    //     <Stack.Screen
+    //       name='DeckList'
+    //       component={DeckList}
+    //       options={{ title: 'Deck List' }}
+    //     />
+    //     <Stack.Screen
+    //       name='AddDeck'
+    //       component={AddDeck}
+    //       options={{ title: 'Add Deck' }}
+    //     />
+    //     <Stack.Screen
+    //       name='DeckView'
+    //       component={DeckView}
+    //       options={{ title: 'Deck View' }}
+    //     />
+    //   </Stack.Navigator>
+    // </NavigationContainer>
   );
 }
