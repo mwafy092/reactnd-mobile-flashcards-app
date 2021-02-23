@@ -1,9 +1,17 @@
 import React from 'react';
-import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
+import {
+  StyleSheet,
+  View,
+  Text,
+  Button,
+  TextInput,
+  KeyboardAvoidingView,
+} from 'react-native';
 import { saveDeckTitle } from '../utils/api';
 import { addDeck } from '../actions';
 import { connect } from 'react-redux';
-
+import SubmitButton from './SubmitButton';
+import { orange } from '../utils/colors';
 class AddDeck extends React.Component {
   state = {
     text: '',
@@ -22,17 +30,20 @@ class AddDeck extends React.Component {
   };
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.title}>What is the new decks name ?</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={(text) => this.setState({ text })}
-          value={this.state.text}></TextInput>
-        <Button
-          onPress={this.submitName}
-          title='submit'
-          style={styles.submitBtn}></Button>
-      </View>
+      <KeyboardAvoidingView style={styles.container} behavior='padding'>
+        <View>
+          <Text style={styles.title}>What is the new decks name ?</Text>
+          <TextInput
+            style={styles.input}
+            onChangeText={(text) => this.setState({ text })}
+            value={this.state.text}></TextInput>
+          <SubmitButton
+            onPress={this.submitName}
+            title='submit'
+            style={styles.submitBtn}
+          />
+        </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -59,8 +70,16 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: '#d6d7da',
     padding: 10,
+    backgroundColor: orange,
     borderRadius: 7,
     overflow: 'hidden',
+    width: 150,
+    display: 'flex',
+    alignSelf: 'center',
+    margin: 10,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
   },
 });
 

@@ -4,6 +4,7 @@ import { orange, white, purple } from '../utils/colors';
 import { addCardToDeck } from '../utils/api';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
+import SubmitButton from './SubmitButton';
 import {
   View,
   Text,
@@ -47,11 +48,11 @@ class AddCard extends React.Component {
             style={styles.input}
             onChangeText={(correctAnswer) => this.setState({ correctAnswer })}
             value={this.state.correctAnswer}></TextInput>
-          <TouchableOpacity
+          <SubmitButton
             style={styles.submitBtn}
-            onPress={() => this.submitCard(deckName)}>
-            <Text style={styles.submitBtnText}>Submit</Text>
-          </TouchableOpacity>
+            onPress={() => this.submitCard(deckName)}
+            style={styles.submitBtn}
+          />
         </View>
       </KeyboardAvoidingView>
     );
@@ -86,6 +87,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignSelf: 'center',
     margin: 10,
+    textAlign: 'center',
+    color: 'white',
+    fontSize: 20,
   },
   input: {
     width: 250,
