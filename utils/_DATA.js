@@ -5,12 +5,12 @@ export const appData = {
       {
         question: 'What is the capital of Chile?',
         answer: 'Santiago',
-        correctAnswer: 'false',
+        correctAnswer: 'true',
       },
       {
         question: 'What is the highest mountain in Britain?',
         answer: 'Ben Nevis',
-        correctAnswer: 'false',
+        correctAnswer: 'true',
       },
       {
         question: 'What is the smallest country in the world?',
@@ -40,7 +40,7 @@ export const appData = {
       {
         question: 'What is the capital of Westeros in Game of Thrones?',
         answer: 'King’s Landing',
-        correctAnswer: 'false',
+        correctAnswer: 'true',
       },
       {
         question: 'Who presented TV quiz Blockbusters between 1983 and 1995?',
@@ -51,7 +51,7 @@ export const appData = {
         question:
           'Who played Queen Elizabeth II in the first two seasons of The Crown?',
         answer: 'Claire Foy',
-        correctAnswer: 'false',
+        correctAnswer: 'true',
       },
     ],
   },
