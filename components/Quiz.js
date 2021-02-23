@@ -42,6 +42,19 @@ class Quiz extends React.Component {
       showQuestion: false,
     });
   };
+
+  replayQuiz = () => {
+    this.setState({
+      questionNumber: 0,
+      showQuestion: false,
+      correct: 0,
+      incorrect: 0,
+    });
+  };
+
+  goBack = () => {
+    this.props.navigation.navigate('DeckView');
+  };
   render() {
     const questionNumber = this.state.questionNumber;
     const decks = this.props.decks;
@@ -62,8 +75,18 @@ class Quiz extends React.Component {
             ) : (
               <Text style={{ fontSize: 60 }}>😢</Text>
             )}
-            <ActionButton styles={styles} text={'Try again'} color={red} />
-            <ActionButton styles={styles} text={'Back'} color={green} />
+            <ActionButton
+              styles={styles}
+              text={'Try again'}
+              color={red}
+              onPress={this.replayQuiz}
+            />
+            <ActionButton
+              styles={styles}
+              text={'Back'}
+              color={green}
+              onPress={this.goBack}
+            />
           </View>
         </View>
       );
