@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavigationAction } from '@react-navigation/native';
-import { orange, white } from '../utils/colors';
+import { orange, white, purple } from '../utils/colors';
 import { addCardToDeck } from '../utils/api';
 import { connect } from 'react-redux';
 import { addCard } from '../actions';
@@ -20,23 +20,29 @@ class AddCard extends React.Component {
     answer: '',
     correctAnswer: '',
   };
-  submitCard = () => {};
+  submitCard = (deck) => {
+    const { question, answer, correctAnswer } = this.state;
+    this.props.dispatch(addCard({ question, answer, correctAnswer, deck }));
+    addCardToDeck(deck, { question, answer, correctAnswer });
+    this.setState({ question: '', answer: '', correctAnswer: '' });
+    this.props.navigation.navigate('DeckView');
+  };
   render() {
     const deckName = this.props.route.params.deck;
     return (
       <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.container}>
-          <Text style={styles.title}></Text>
+          <Text style={styles.title}>What is the question?</Text>
           <TextInput
             style={styles.input}
             onChangeText={(question) => this.setState({ question })}
             value={this.state.question}></TextInput>
-          <Text></Text>
+          <Text style={styles.title}>What is the answer?</Text>
           <TextInput
             style={styles.input}
             onChangeText={(answer) => this.setState({ answer })}
             value={this.state.answer}></TextInput>
-          <Text></Text>
+          <Text style={styles.title}>Is that true or false?</Text>
           <TextInput
             style={styles.input}
             onChangeText={(correctAnswer) => this.setState({ correctAnswer })}
@@ -57,6 +63,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignContent: 'center',
+    textAlign: 'center',
   },
   submitBtnText: {
     color: white,
@@ -64,8 +71,9 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   title: {
-    fontSize: 30,
-    color: '#333',
+    fontSize: 25,
+    color: '#444',
+    textAlign: 'center',
   },
   submitBtn: {
     borderWidth: 0.5,
@@ -74,16 +82,21 @@ const styles = StyleSheet.create({
     backgroundColor: orange,
     borderRadius: 7,
     overflow: 'hidden',
+    width: 150,
+    display: 'flex',
+    alignSelf: 'center',
+    margin: 10,
   },
   input: {
     width: 250,
-    height: 40,
-    padding: 8,
+    height: 35,
     borderWidth: 1,
     borderColor: '#757575',
-    margin: 20,
+    margin: 10,
     borderRadius: 7,
+    display: 'flex',
+    alignSelf: 'center',
   },
 });
 
-export default AddCard;
+export default connect()(AddCard);

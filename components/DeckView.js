@@ -13,7 +13,7 @@ class DeckView extends React.Component {
       <View style={styles.container}>
         <Text style={{ fontSize: 30 }}>{decks[deck].title}</Text>
         <Text style={{ color: 'red', fontSize: 18, margin: 10 }}>
-          {decks.questions ? decks[deck].questions.length : 'empty deck'}
+          {decks[deck].questions.length}
         </Text>
         <ActionButton
           color={purple}
