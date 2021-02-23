@@ -1,10 +1,10 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createStackNavigator, StackView } from '@react-navigation/stack';
 import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
+import { Constants } from 'expo';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckView from './components/DeckView';
@@ -12,12 +12,22 @@ import { Provider } from 'react-redux';
 import reducer from './reducers';
 import { createStore } from 'redux';
 import AddCard from './components/AddCard';
+import { back } from 'react-native/Libraries/Animated/src/Easing';
+import { purple } from './utils/colors';
 
 const store = createStore(reducer);
 const Tabs = createBottomTabNavigator();
 const Stack = createStackNavigator();
 const DeckListStack = createStackNavigator();
 const AddDeckStack = createStackNavigator();
+
+function NewStatusBar({ backgroundColor, ...props }) {
+  return (
+    <View style={{ backgroundColor: purple }}>
+      <StatusBar translucent backgroundColor={backgroundColor} {...props} />
+    </View>
+  );
+}
 
 const DeckListScreen = () => (
   <DeckListStack.Navigator>
@@ -52,6 +62,7 @@ export default function App() {
   return (
     <Provider store={store}>
       <NavigationContainer>
+        <NewStatusBar backgroundColor={purple} barStyle='light-content' />
         <Tabs.Navigator>
           <Tabs.Screen
             name='DeckList'
