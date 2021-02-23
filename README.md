@@ -1,4 +1,4 @@
-# Mobile flashcards app
+# Mobile flashcards app - Udacity Nano-degree
 
 # About the App
 
@@ -16,6 +16,7 @@ For the UdaciCards project, you will build a mobile application (Android or iOS 
 2. use npm install
 3. use npm start
 4. choose your preferred way to view the project
+5. Scan QR Code By your phone to start it
 
 # Testing
 
