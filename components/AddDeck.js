@@ -2,13 +2,28 @@ import React from 'react';
 import { StyleSheet, View, Text, Button, TextInput } from 'react-native';
 import { saveDeckTitle } from '../utils/api';
 import { addDeck } from '../actions';
-import { add } from 'react-native-reanimated';
+import { connect } from 'react-redux';
 
-export default class AddDeck extends React.Component {
+class AddDeck extends React.Component {
+  state = {
+    text: '',
+  };
+
+  submitName = () => {
+    const { text } = this.state;
+    saveDeckTitle(text);
+    this.props.dispatch(addDeck(text));
+    this.props.navigation.push('DeckView', { entryId: text });
+    this.setState({ text: '' });
+  };
   render() {
     return (
       <View style={styles.container}>
-        <Text>Add Deck Component</Text>
+        <Text>What is the new decks name ?</Text>
+        <TextInput
+          onChangeText={(text) => this.setState({ text })}
+          value={this.state.text}></TextInput>
+        <Button onPress={this.submitName} title='submit'></Button>
       </View>
     );
   }
@@ -20,3 +35,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+export default connect()(AddDeck);

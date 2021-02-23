@@ -18,7 +18,7 @@ export function getDecks(deck) {
   });
 }
 
-export function saveDeckTitle() {
+export function saveDeckTitle(title) {
   return AsyncStorage.getItem(
     FLASHCARDS_STORAGE_KEY,
     JSON.stringify({

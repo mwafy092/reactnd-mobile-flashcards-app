@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { getData } from '../utils/api';
-export default class DeckView extends React.Component {
+import { connect } from 'react-redux';
+class DeckView extends React.Component {
   render() {
     const deck = this.props.route.params.deck;
-    const decks = getData();
-    console.log(decks[deck]);
+    const { decks } = this.props;
     return (
       <View style={styles.container}>
         <Text>{decks[deck].title}</Text>
@@ -22,3 +22,11 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
+
+function mapStateToProps(decks) {
+  return {
+    decks,
+  };
+}
+
+export default connect(mapStateToProps)(DeckView);

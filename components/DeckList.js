@@ -2,7 +2,6 @@ import React from 'react';
 import { View, Text, StyleSheet, Button } from 'react-native';
 import { getData } from '../utils/api';
 import { getDecks } from '../utils/api';
-import { DeckView } from './DeckView';
 import { connect } from 'react-redux';
 import { receiveDecks } from '../actions';
 class DeckList extends React.Component {
