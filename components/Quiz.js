@@ -32,7 +32,7 @@ class Quiz extends React.Component {
       questionNumber
     ].correctAnswer.toLowerCase();
 
-    if (answer === correct) {
+    if (answer.trim() === correct.trim()) {
       this.setState({ correct: this.state.correct + 1 });
     } else {
       this.setState({ incorrect: this.state.incorrect + 1 });
