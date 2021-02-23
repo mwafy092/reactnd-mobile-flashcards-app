@@ -11,14 +11,13 @@ import DeckView from './components/DeckView';
 import { Provider } from 'react-redux';
 import reducer from './reducers';
 import { createStore } from 'redux';
+import AddCard from './components/AddCard';
 
 const store = createStore(reducer);
 const Tabs = createBottomTabNavigator();
-
-// const Stack = createStackNavigator();
+const Stack = createStackNavigator();
 const DeckListStack = createStackNavigator();
 const AddDeckStack = createStackNavigator();
-// const DeckViewStack = createStackNavigator();
 
 const DeckListScreen = () => (
   <DeckListStack.Navigator>
@@ -32,6 +31,11 @@ const DeckListScreen = () => (
       component={DeckView}
       options={{ title: 'Deck Info' }}
     />
+    <DeckListStack.Screen
+      name='AddCard'
+      component={AddCard}
+      options={{ title: 'Add Card' }}
+    />
   </DeckListStack.Navigator>
 );
 const AddDeckScreen = () => (
@@ -42,10 +46,6 @@ const AddDeckScreen = () => (
       options={{ title: 'Add Deck' }}
     />
   </AddDeckStack.Navigator>
-);
-
-const DeckViewScreen = () => (
-  <DeckViewStack.Navigator></DeckViewStack.Navigator>
 );
 
 export default function App() {
