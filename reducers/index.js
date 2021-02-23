@@ -16,7 +16,7 @@ function deck(state = {}, action) {
     case RECEIVE_DECKS:
       return {
         ...state,
-        ...action.deck,
+        ...action.decks,
       };
     case ADD_CARD_TO_DECK:
       const { question, answer, deck, correctAnswer } = action.card;
