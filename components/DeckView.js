@@ -5,11 +5,12 @@ import { connect } from 'react-redux';
 class DeckView extends React.Component {
   render() {
     const deck = this.props.route.params.deck;
+
     const { decks } = this.props;
     return (
       <View style={styles.container}>
         <Text>{decks[deck].title}</Text>
-        <Text>{decks[deck].questions.length}</Text>
+        <Text>{decks.questions && decks[deck].questions.length}</Text>
       </View>
     );
   }
