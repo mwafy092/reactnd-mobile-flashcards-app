@@ -11,6 +11,7 @@ import SubmitButton from './SubmitButton';
 import { connect } from 'react-redux';
 import ActionButton from './ActionButton';
 import Info from './Info';
+import { setLocalNotification, clearLocalNotification } from '../utils/helpers';
 class Quiz extends React.Component {
   state = {
     questionNumber: 0,
@@ -41,6 +42,7 @@ class Quiz extends React.Component {
       questionNumber: this.state.questionNumber + 1,
       showQuestion: false,
     });
+    clearLocalNotification().then(setLocalNotification);
   };
   render() {
     const questionNumber = this.state.questionNumber;
