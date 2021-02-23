@@ -8,6 +8,11 @@ import { FontAwesome, MaterialCommunityIcons } from '@expo/vector-icons';
 import DeckList from './components/DeckList';
 import AddDeck from './components/AddDeck';
 import DeckView from './components/DeckView';
+import { Provider } from 'react-redux';
+import reducer from './reducers';
+import { createStore } from 'redux';
+
+const store = createStore(reducer);
 const Tabs = createBottomTabNavigator();
 
 // const Stack = createStackNavigator();
@@ -45,48 +50,31 @@ const DeckViewScreen = () => (
 
 export default function App() {
   return (
-    <NavigationContainer>
-      <Tabs.Navigator>
-        <Tabs.Screen
-          name='DeckList'
-          component={DeckListScreen}
-          options={{
-            tabBarLabel: 'Deck List',
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name='cards' color={color} size={26} />
-            ),
-          }}
-        />
-        <Tabs.Screen
-          name='AddDeck'
-          component={AddDeckScreen}
-          options={{
-            tabBarLabel: 'Deck List',
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name='plus-square' color={color} size={26} />
-            ),
-          }}
-        />
-      </Tabs.Navigator>
-    </NavigationContainer>
-    // <NavigationContainer>
-    //   <Stack.Navigator>
-    //     <Stack.Screen
-    //       name='DeckList'
-    //       component={DeckList}
-    //       options={{ title: 'Deck List' }}
-    //     />
-    //     <Stack.Screen
-    //       name='AddDeck'
-    //       component={AddDeck}
-    //       options={{ title: 'Add Deck' }}
-    //     />
-    //     <Stack.Screen
-    //       name='DeckView'
-    //       component={DeckView}
-    //       options={{ title: 'Deck View' }}
-    //     />
-    //   </Stack.Navigator>
-    // </NavigationContainer>
+    <Provider store={store}>
+      <NavigationContainer>
+        <Tabs.Navigator>
+          <Tabs.Screen
+            name='DeckList'
+            component={DeckListScreen}
+            options={{
+              tabBarLabel: 'Deck List',
+              tabBarIcon: ({ color }) => (
+                <MaterialCommunityIcons name='cards' color={color} size={26} />
+              ),
+            }}
+          />
+          <Tabs.Screen
+            name='AddDeck'
+            component={AddDeckScreen}
+            options={{
+              tabBarLabel: 'Deck List',
+              tabBarIcon: ({ color }) => (
+                <FontAwesome name='plus-square' color={color} size={26} />
+              ),
+            }}
+          />
+        </Tabs.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }

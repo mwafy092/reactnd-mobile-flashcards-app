@@ -2,6 +2,7 @@ import { appData } from './_DATA';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const FLASHCARDS_STORAGE_KEY = 'flashcards: decks';
+
 export function getData() {
   return appData;
 }
