@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import * as Notifications from 'expo-notifications';
+
+import { Notifications } from 'expo';
 import * as Permissions from 'expo-permissions';
 
 const NOTIFICATION_KEY = 'flashcards: notifications';
