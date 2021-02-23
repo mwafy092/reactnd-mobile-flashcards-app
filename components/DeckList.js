@@ -17,7 +17,9 @@ export default class DeckList extends React.Component {
               <Text>{questions.length}</Text>
               <Button
                 title='show deck'
-                onPress={() => this.props.navigation.push('DeckView')}></Button>
+                onPress={() =>
+                  this.props.navigation.push('DeckView', { deck })
+                }></Button>
             </View>
           );
         })}

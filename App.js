@@ -25,7 +25,7 @@ const DeckListScreen = () => (
     <DeckListStack.Screen
       name='DeckView'
       component={DeckView}
-      options={{ title: 'Deck View' }}
+      options={{ title: 'Deck Info' }}
     />
   </DeckListStack.Navigator>
 );
